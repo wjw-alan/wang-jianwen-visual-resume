@@ -4,206 +4,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>王健文｜个人简历数据可视化</title>
+  <title>王健文｜个人可视化简历</title>
   <style>
-:root{
-  --bg:#f3f7fb;
-  --card:#ffffff;
-  --ink:#172033;
-  --muted:#64748b;
-  --line:#dbe4f0;
-  --blue:#2563eb;
-  --cyan:#14b8a6;
-  --orange:#f59e0b;
-  --shadow:0 20px 55px rgba(23,32,51,.12);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 8% 4%,rgba(37,99,235,.18),transparent 28rem),
-    radial-gradient(circle at 92% 2%,rgba(20,184,166,.18),transparent 28rem),
-    var(--bg);
-  line-height:1.7;
-}
-.resume-h5{max-width:980px;margin:0 auto;padding:28px 18px 54px}
-.hero{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:18px;
-  align-items:stretch;
-}
-.card{
-  background:rgba(255,255,255,.92);
-  border:1px solid var(--line);
-  border-radius:28px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.intro{padding:34px;position:relative}
-.badge{display:inline-block;padding:8px 13px;border-radius:999px;background:#e8f0ff;color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.08em}
-h1{margin:18px 0 8px;font-size:56px;line-height:1;color:var(--ink);letter-spacing:-.06em}
-.subtitle{margin:0 0 18px;color:var(--muted);font-size:18px}
-.tags{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0}
-.tag{padding:7px 11px;border-radius:999px;background:#ecfeff;color:#0f766e;font-weight:700;font-size:13px}
-.contact{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;color:var(--muted);font-size:14px;margin-top:18px}
-.photo-card{padding:22px;display:flex;flex-direction:column;gap:16px}
-.photo-box{
-  min-height:340px;
-  border-radius:24px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ccfbf1);
-}
-.photo-box img{
-  width:min(62%,240px);
-  aspect-ratio:3/4;
-  object-fit:cover;
-  border-radius:24px;
-  border:8px solid white;
-  box-shadow:0 18px 40px rgba(23,32,51,.18);
-}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.metric{padding:15px;border-radius:18px;background:#f8fafc;border:1px solid var(--line);text-align:center}
-.metric b{display:block;font-size:28px;color:var(--blue);line-height:1}
-.metric span{font-size:12px;color:var(--muted)}
-section{margin-top:20px}
-.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 12px}
-h2{margin:0;font-size:24px;letter-spacing:-.03em}
-.section-title small{color:var(--muted)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{padding:24px}
-.bars{display:grid;gap:14px}
-.bar-row{display:grid;gap:7px}
-.bar-label{display:flex;justify-content:space-between;color:var(--muted);font-size:14px}
-.bar{height:14px;border-radius:99px;background:#edf2f7;overflow:hidden}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
-.timeline{position:relative;display:grid;gap:16px}
-.timeline-item{padding-left:22px;border-left:2px solid var(--line);position:relative}
-.timeline-item:before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--cyan);border:3px solid white}
-h3{margin:0 0 4px;font-size:17px}
-p{margin:0}
-.muted{color:var(--muted)}
-.project-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.project{padding:18px;border-radius:20px;background:#f8fafc;border:1px solid var(--line)}
-.project strong{color:var(--blue)}
-.viz-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.viz{padding:18px;border-radius:20px;background:white;border:1px solid var(--line)}
-.viz b{display:block;font-size:26px;color:var(--cyan)}
-.donut-wrap{display:grid;place-items:center;padding:8px 0 2px}
-.donut{
-  width:220px;height:220px;border-radius:50%;
-  background:conic-gradient(var(--blue) 0 34%,var(--cyan) 34% 60%,var(--orange) 60% 78%,#94a3b8 78% 100%);
-  position:relative;
-}
-.donut:after{content:"能力结构";position:absolute;inset:42px;border-radius:50%;background:white;display:grid;place-items:center;font-weight:800;color:var(--ink)}
-.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
-.note{padding:22px;border-radius:24px;background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(20,184,166,.12));border:1px solid var(--line)}
-footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
-@media(max-width:760px){
-  .hero,.grid,.project-cards{grid-template-columns:1fr}
-  .viz-row{grid-template-columns:repeat(2,1fr)}
-  .contact{grid-template-columns:1fr}
-  h1{font-size:44px}
-}
-@media(max-width:460px){
-  .metrics,.viz-row{grid-template-columns:1fr}
-  .intro,.panel{padding:20px}
-}
-</style>
+    :root {
+      --bg: #f5f7fb;
+      --bg2: #ffffff;
+      --ink: #182033;
+      --muted: #667085;
+      --rule: #d9e1ef;
+      --accent: #2563eb;
+      --accent2: #14b8a6;
+      --shadow: rgba(24, 32, 51, 0.10);
+      --font-main: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 34rem),
+        radial-gradient(circle at top right, rgba(20, 184, 166, 0.16), transparent 30rem),
+        var(--bg);
+      font-family: var(--font-main);
+      line-height: 1.7;
+    }
+    .page { max-width: 1180px; margin: 0 auto; padding: 34px 22px 56px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 55px var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .intro { padding: 34px; position: relative; overflow: hidden; }
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -90px;
+      bottom: -110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      opacity: 0.14;
+    }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); }
+    h1 { margin: 0; font-size: clamp(36px, 6vw, 68px); line-height: 1.04; letter-spacing: -0.04em; }
+    .role { margin: 18px 0 24px; color: var(--muted); font-size: 19px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.09);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .profile {
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 18px;
+    }
+    .portrait-wrap {
+      min-height: 320px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(20, 184, 166, 0.18));
+      display: grid;
+      place-items: center;
+    }
+    .portrait {
+      width: min(66%, 260px);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 8px solid var(--bg2);
+      box-shadow: 0 16px 34px var(--shadow);
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .metric { padding: 16px; border-radius: 16px; background: var(--bg); border: 1px solid var(--rule); }
+    .metric strong { display: block; font-size: 28px; color: var(--accent); line-height: 1; }
+    .metric span { display: block; margin-top: 8px; font-size: 12px; color: var(--muted); }
+    section { margin-top: 26px; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    h2 { margin: 0; font-size: 24px; letter-spacing: -0.02em; }
+    .section-title small { color: var(--muted); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel { padding: 24px; }
+    .timeline { display: grid; gap: 18px; }
+    .item {
+      position: relative;
+      padding-left: 22px;
+      border-left: 2px solid var(--rule);
+    }
+    .item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent2);
+      border: 3px solid var(--bg2);
+    }
+    h3 { margin: 0 0 6px; font-size: 18px; }
+    p { margin: 0; }
+    .muted { color: var(--muted); }
+    .highlight {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .mini {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      min-height: 132px;
+    }
+    .mini b { display: block; color: var(--accent); margin-bottom: 8px; }
+    .chart-figure { margin: 0; }
+    .chart-figure figcaption { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+    .chart { width: 100%; min-height: 360px; }
+    .summary {
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(20, 184, 166, 0.12));
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+    }
+    footer { margin-top: 28px; color: var(--muted); font-size: 13px; text-align: center; }
+    @media (max-width: 860px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .highlight { grid-template-columns: repeat(2, 1fr); }
+      .contact { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .metrics, .highlight { grid-template-columns: 1fr; }
+      .intro, .panel { padding: 20px; }
+    }
+    @media print {
+      body { background: var(--bg2); }
+      .card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
 </head>
 <body>
-
-<main class="resume-h5">
-  <div class="hero">
-    <article class="card intro">
-      <span class="badge">AI 方式生成的个人可视化简历</span>
-      <h1>王健文</h1>
-      <p class="subtitle">浙江树人学院｜数据科学与大数据技术｜本科在读</p>
-      <p>求职意向为实习生，方向聚焦数据分析、电商运营数据、推荐系统与零售业务数据建模。个人特点是把 Python、SQL、Excel 和可视化表达结合起来，用数据讲清楚经历与能力。</p>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">MySQL</span><span class="tag">Matplotlib</span><span class="tag">Hadoop/Spark 基础</span><span class="tag">HTML/CSS</span>
-      </div>
-      <div class="contact">
-        <span>电话：15255966666</span>
-        <span>邮箱：1805777069@qq.com</span>
-        <span>籍贯：安徽</span>
-        <span>出生：2004.2</span>
-      </div>
-    </article>
-    <aside class="card photo-card">
-      <div class="photo-box"><img src="assets/portrait.jpeg" alt="王健文个人形象照"></div>
-      <div class="metrics">
-        <div class="metric"><b>10万</b><span>评分数据</span></div>
-        <div class="metric"><b>8张</b><span>核心数据表</span></div>
-        <div class="metric"><b>20+</b><span>运营推文</span></div>
-      </div>
-    </aside>
-  </div>
-
-  <section class="note">
-    <h2>个人定位</h2>
-    <p>数据科学专业科班出身，具备数据采集、清洗、建模、可视化展示和基础 Web 对接能力。适合在电商、零售、内容运营等场景中承担数据监控、用户行为分析、商品与库存分析等实习工作。</p>
-  </section>
-
-  <section class="grid">
-    <article class="card panel">
-      <div class="section-title"><h2>能力条形图</h2><small>基于简历内容整理</small></div>
-      <div class="bars">
-        <div class="bar-row"><div class="bar-label"><span>Python 数据处理</span><span>86%</span></div><div class="bar"><i style="width:86%"></i></div></div>
-        <div class="bar-row"><div class="bar-label"><span>SQL / MySQL 建模</span><span>84%</span></div><div class="bar"><i style="width:84%"></i></div></div>
-        <div class="bar-row"><div class="bar-label"><span>数据可视化表达</span><span>82%</span></div><div class="bar"><i style="width:82%"></i></div></div>
-        <div class="bar-row"><div class="bar-label"><span>大数据技术基础</span><span>68%</span></div><div class="bar"><i style="width:68%"></i></div></div>
-        <div class="bar-row"><div class="bar-label"><span>团队沟通与运营</span><span>88%</span></div><div class="bar"><i style="width:88%"></i></div></div>
-      </div>
-    </article>
-    <article class="card panel">
-      <div class="section-title"><h2>能力结构图</h2><small>技术 + 业务 + 协作</small></div>
-      <div class="donut-wrap"><div class="donut"></div></div>
-      <div class="legend">
-        <span><i style="background:var(--blue)"></i>数据分析 34%</span>
-        <span><i style="background:var(--cyan)"></i>数据库 26%</span>
-        <span><i style="background:var(--orange)"></i>可视化 18%</span>
-        <span><i style="background:#94a3b8"></i>协作运营 22%</span>
-      </div>
-    </article>
-  </section>
-
-  <section class="card panel">
-    <div class="section-title"><h2>项目经历可视化</h2><small>用量化结果替代传统段落堆叠</small></div>
-    <div class="project-cards">
-      <div class="project"><h3>视频网站电影推荐程序开发</h3><p class="muted">算法与数据负责人｜2024.07</p><p>基于 <strong>10 万条</strong>用户评分数据完成清洗与用户-物品评分矩阵构建，实现协同过滤推荐算法，单条响应时间 <strong>&lt;300ms</strong>。</p></div>
-      <div class="project"><h3>超市管理系统开发</h3><p class="muted">数据库设计成员｜2025.06</p><p>围绕商品、库存、销售、会员 <strong>4 类业务场景</strong>，设计 <strong>8 张</strong>核心数据表，优化 <strong>3 处</strong>查询效率问题。</p></div>
+  <main class="page">
+    <div class="hero">
+      <article class="intro card">
+        <div class="eyebrow"><span class="dot"></span>数据科学与大数据技术</div>
+        <h1>王健文</h1>
+        <p class="role">本科在读｜求职意向：实习生｜方向：数据分析、电商运营数据、推荐系统</p>
+        <div class="tags">
+          <span class="tag">Python 数据分析</span>
+          <span class="tag">MySQL 建模</span>
+          <span class="tag">Matplotlib 可视化</span>
+          <span class="tag">Hadoop / Spark 基础</span>
+          <span class="tag">公众号运营</span>
+        </div>
+        <p>我具备从数据采集、清洗、建模到可视化展示的完整学习与项目经验，曾参与电影推荐程序、超市管理系统、语音交互设计等项目。相比单纯开发岗位，我更适合把数据处理能力与业务理解结合起来，支持店铺监控、用户行为分析、投放效果评估与内容运营。</p>
+        <div class="contact">
+          <span>电话：15255966666</span>
+          <span>邮箱：1805777069@qq.com</span>
+          <span>籍贯：安徽</span>
+          <span>出生：2004.2</span>
+        </div>
+      </article>
+      <aside class="profile card">
+        <div class="portrait-wrap">
+          <img class="portrait" src="assets/portrait.jpeg" alt="王健文个人形象照">
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>2</strong><span>完整数据项目</span></div>
+          <div class="metric"><strong>8</strong><span>核心数据表设计</span></div>
+          <div class="metric"><strong>20+</strong><span>公众号推文运营</span></div>
+        </div>
+      </aside>
     </div>
-  </section>
 
-  <section class="grid">
-    <article class="card panel">
-      <div class="section-title"><h2>经历时间线</h2><small>学习与项目路径</small></div>
-      <div class="timeline">
-        <div class="timeline-item"><h3>2023.09 入学与任职</h3><p>进入浙江树人学院信息科技学院学习，同时担任班级学习委员与新宣部干事。</p></div>
-        <div class="timeline-item"><h3>2024.06 国创申报</h3><p>参与基于 DeepSeek 的语音交互设计。</p></div>
-        <div class="timeline-item"><h3>2024.07 推荐系统项目</h3><p>负责电影推荐程序中的数据清洗、矩阵构建和算法实现。</p></div>
-        <div class="timeline-item"><h3>2025.02 导师项目</h3><p>参与清爽学院项目开发。</p></div>
-        <div class="timeline-item"><h3>2025.06 数据库项目</h3><p>完成超市管理系统核心数据表设计与查询优化。</p></div>
-      </div>
-    </article>
-    <article class="card panel">
-      <div class="section-title"><h2>个人特点</h2><small>适合实习岗位</small></div>
-      <div class="viz-row">
-        <div class="viz"><b>2</b><span>完整数据项目</span></div>
-        <div class="viz"><b>4</b><span>业务场景建模</span></div>
-        <div class="viz"><b>3</b><span>查询优化点</span></div>
-        <div class="viz"><b>CET-4</b><span>英语四级</span></div>
-      </div>
-      <p style="margin-top:16px">我能用 Excel 和 SQL 进行店铺数据监控、投放效果分析和用户行为研究，也具备基础前端对接能力，可将数据结果转化为清晰页面或可视化报告。</p>
-    </article>
-  </section>
-  <footer>本页面根据王健文真实简历整理，用于《数据可视化》实验七个人简历数据可视化作业。</footer>
-</main>
+    <section class="summary">
+      <h2>个人定位</h2>
+      <p>数据科学专业科班出身，熟悉 Python、SQL、Excel 与基础大数据技术。个人优势是能把数据处理、可视化表达和业务问题结合起来，在电商运营、零售库存、用户推荐和内容数据监控等场景中快速上手。</p>
+    </section>
 
+    <section class="grid-2">
+      <article class="panel card">
+        <div class="section-title"><h2>教育背景</h2><small>2023.09-2027.06</small></div>
+        <div class="timeline">
+          <div class="item">
+            <h3>浙江树人学院 信息科技学院</h3>
+            <p class="muted">数据科学与大数据技术｜本科在读</p>
+            <p>核心课程包括 Python 数据分析、数据库原理与 SQL、Hadoop 与 Spark、数据采集与处理、商务数据分析等。</p>
+          </div>
+        </div>
+      </article>
+      <article class="panel card">
+        <figure class="chart-figure">
+          <figcaption>能力画像：技术、业务与协作能力分布</figcaption>
+          <div id="chart-skills" class="chart"></div>
+        </figure>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel card">
+        <div class="section-title"><h2>项目经历</h2><small>真实简历信息整理</small></div>
+        <div class="timeline">
+          <div class="item">
+            <h3>视频网站电影推荐程序开发｜算法与数据负责人</h3>
+            <p class="muted">2024.07</p>
+            <p>基于 10 万条用户评分数据，用 Pandas 完成数据清洗与用户-物品评分矩阵构建，实现协同过滤推荐算法，单条响应时间低于 300ms。</p>
+          </div>
+          <div class="item">
+            <h3>超市管理系统开发｜数据库设计成员</h3>
+            <p class="muted">2025.06</p>
+            <p>围绕商品、库存、销售、会员 4 大业务场景，基于 MySQL 设计 8 张核心数据表，优化 3 处查询效率问题，系统响应时间缩短 30%。</p>
+          </div>
+          <div class="item">
+            <h3>其他项目</h3>
+            <p>基于 DeepSeek 的语音交互设计（国创申报）、清爽学院项目开发（跟随导师）。</p>
+          </div>
+        </div>
+      </article>
+      <article class="panel card">
+        <figure class="chart-figure">
+          <figcaption>项目成果量化展示</figcaption>
+          <div id="chart-projects" class="chart"></div>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title"><h2>个人特点可视化</h2><small>适配数据可视化课程个人作业</small></div>
+      <div class="highlight">
+        <div class="mini"><b>数据处理</b><p>能使用 Pandas/Numpy 完成清洗、特征提取和基础建模。</p></div>
+        <div class="mini"><b>数据库能力</b><p>掌握 MySQL 表结构设计、查询优化与业务数据建模。</p></div>
+        <div class="mini"><b>业务理解</b><p>关注电商、零售和内容运营场景，理解库存、销售、用户行为指标。</p></div>
+        <div class="mini"><b>团队协作</b><p>担任学习委员和新宣部干事，具备沟通、组织和内容执行经验。</p></div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel card">
+        <figure class="chart-figure">
+          <figcaption>经历时间线</figcaption>
+          <div id="chart-timeline" class="chart"></div>
+        </figure>
+      </article>
+      <article class="panel card">
+        <div class="section-title"><h2>自我评价</h2><small>简历内容提炼</small></div>
+        <p>我工作认真负责，具备良好的团队协作与问题解决能力。作为数据专业学生，我能熟练使用 Excel 和 SQL 进行店铺数据监控、投放效果分析和用户行为研究，也具备 HTML/CSS 基础与 Flask 简单 API 搭建能力。</p>
+      </article>
+    </section>
+
+    <footer>本页面根据王健文提供的个人简历整理制作，未添加虚假经历。</footer>
+  </main>
+  <script src="./_shared/js/echarts.min.js"></script>
+  <script src="assets/charts.js"></script>
 </body>
 </html>
